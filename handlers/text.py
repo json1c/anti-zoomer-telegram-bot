@@ -12,6 +12,10 @@ async def message(message: types.Message):
             await message.delete()
 
             await message.answer(
-                get_template("administrative:message_deleted")
-                .format(name=message.from_user.first_name, word=word)
+                get_template("administrative:message_deleted").format(
+                    name=message.from_user.first_name,
+                    id=message.from_user.id,
+                    word=word,
+                ),
+                parse_mode=types.ParseMode.MARKDOWN,
             )
