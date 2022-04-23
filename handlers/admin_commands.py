@@ -22,7 +22,7 @@ async def cmd_words(message: types.Message):
 
 @dp.message_handler(commands=["addword"])
 async def cmd_addword(message: types.Message):
-    args = message.text.split()
+    args = message.get_args()
 
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
@@ -40,7 +40,7 @@ async def cmd_addword(message: types.Message):
 
 @dp.message_handler(commands=["delword"])
 async def cmd_delword(message: types.Message):
-    args = message.text.split()
+    args = message.get_args()
 
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
@@ -58,7 +58,7 @@ async def cmd_delword(message: types.Message):
 
 @dp.message_handler(commands=["addwhitelist"])
 async def cmd_addwhitelist(message: types.Message):
-    args = message.text.split()
+    args = message.get_args()
 
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
@@ -76,7 +76,7 @@ async def cmd_addwhitelist(message: types.Message):
 
 @dp.message_handler(commands=["delwhitelist"])
 async def cmd_delwhitelist(message: types.Message):
-    args = message.text.split()
+    args = message.get_args()
 
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
