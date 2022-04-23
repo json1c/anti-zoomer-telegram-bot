@@ -5,7 +5,7 @@ from aiogram import Bot
 import handlers
 from dispatcher import dp, bot
 from aiogram.utils import executor
-from aiogram.types import BotCommand, BotCommandScopeChat, ChatAdministratorRights
+from aiogram.types import BotCommand, ChatAdministratorRights
 
 logging.basicConfig(level=logging.INFO)
 

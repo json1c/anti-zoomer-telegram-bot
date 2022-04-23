@@ -28,6 +28,7 @@ async def cmd_addword(message: types.Message):
     
     if not member.is_chat_admin():
         await message.answer(get_template("administrative:not_enough_rights"))
+        return
 
     if len(args) == 1:
         await message.answer(get_template("commands:addword:not_enough_arguments"))
@@ -45,6 +46,7 @@ async def cmd_delword(message: types.Message):
     
     if not member.is_chat_admin():
         await message.answer(get_template("administrative:not_enough_rights"))
+        return
 
     if len(args) == 1:
         await message.answer(get_template("commands:delword:not_enough_arguments"))
@@ -62,6 +64,7 @@ async def cmd_addwhitelist(message: types.Message):
     
     if not member.is_chat_admin():
         await message.answer(get_template("administrative:not_enough_rights"))
+        return
 
     if len(args) == 1:
         await message.answer(get_template("commands:addwhitelist:not_enough_arguments"))
@@ -79,6 +82,7 @@ async def cmd_delwhitelist(message: types.Message):
     
     if not member.is_chat_admin():
         await message.answer(get_template("administrative:not_enough_rights"))
+        return
 
     if len(args) == 1:
         await message.answer(get_template("commands:delwhitelist:not_enough_arguments"))
