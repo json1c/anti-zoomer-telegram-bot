@@ -13,7 +13,8 @@ async def set_my_commands(_):
         BotCommand("delword", "Удалить слово из базы"),
         BotCommand("addwhitelist", "Добавить слово в исключения"),
         BotCommand("delwhitelist", "Удалить слово из исключений"),
-        BotCommand("words", "Получить список слов-исключений и запрещенных локальных слов")
+        BotCommand("words", "Получить список слов-исключений и запрещенных локальных слов"),
+        BotCommand("toggleadmindelete", "Удалять сообщения от админов")
     ])
 
     await bot.set_my_default_administrator_rights(
