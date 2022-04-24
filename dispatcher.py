@@ -4,5 +4,5 @@ from aiogram import Bot, Dispatcher
 
 db = WordDatabase()
 
-bot = Bot(config.BOT_TOKEN, parse_mode="html")
+bot = Bot(config.BOT_TOKEN, parse_mode="markdown")
 dp = Dispatcher(bot)
