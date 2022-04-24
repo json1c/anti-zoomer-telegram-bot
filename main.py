@@ -1,6 +1,4 @@
 import logging
-from unittest import skip
-
 from aiogram import Bot
 import handlers
 from dispatcher import dp, bot
