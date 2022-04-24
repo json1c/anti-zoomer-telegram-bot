@@ -16,6 +16,5 @@ async def message(message: types.Message):
                     name=message.from_user.first_name,
                     id=message.from_user.id,
                     word=word,
-                ),
-                parse_mode=types.ParseMode.MARKDOWN,
+                )
             )
