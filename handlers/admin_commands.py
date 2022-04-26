@@ -45,11 +45,15 @@ async def cmd_addword(message: types.Message):
         await message.answer(get_template("administrative:not_enough_rights"))
         return
 
-    if len(args) == 1:
+    if len(args) < 3:
         await message.answer(get_template("commands:addword:not_enough_arguments"))
     
     else:
-        words_db.add_local_word(message.chat.id, args[1], message.from_user.id)
+        if args[1] not in ("text", "regexp"):
+            await message.answer(get_template("commands:addword:not_enough_arguments"))
+            return
+
+        words_db.add_local_word(message.chat.id, args[2], message.from_user.id, args[1])
         await message.answer(get_template("commands:addword:success"))
 
 

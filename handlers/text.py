@@ -1,7 +1,10 @@
+import transliterate
 from dispatcher import dp, words_db, chats_db, bot
 from aiogram import types
 from modules.templates import get_template
-from transliterate import translit
+from modules.transliterator import Transliterator
+
+transliterator = Transliterator()
 
 
 @dp.message_handler(chat_type=["supergroup", "megagroup", "group"])
@@ -16,7 +19,7 @@ async def message(message: types.Message):
             return
     
     for word in message.text.split():
-        transliterated_word = translit(word, "ru")
+        transliterated_word = transliterator.transliterate(word)
         if words_db.check_word(message.chat.id, transliterated_word.lower()):
             await message.delete()
 
