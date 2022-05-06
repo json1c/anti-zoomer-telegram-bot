@@ -38,10 +38,6 @@ async def cmd_words(message: types.Message):
 @dp.message_handler(commands=["addword"])
 async def cmd_addword(message: types.Message):
     args = message.text.split()
-    
-    word_type = args[1]
-    word = args[2].lower()
-
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
     if not member.is_chat_admin():
@@ -50,22 +46,22 @@ async def cmd_addword(message: types.Message):
 
     if len(args) < 3:
         await message.answer(get_template("commands:addword:not_enough_arguments"))
+        return
     
-    else:
-        if args[1] not in ("text", "regexp"):
-            await message.answer(get_template("commands:addword:not_enough_arguments"))
-            return
+    word_type = args[1]
+    word = args[2].lower()
 
-        words_db.add_local_word(message.chat.id, word, message.from_user.id, word_type)
-        await message.answer(get_template("commands:addword:success"))
+    if args[1] not in ("text", "regexp"):
+        await message.answer(get_template("commands:addword:not_enough_arguments"))
+        return
+
+    words_db.add_local_word(message.chat.id, word, message.from_user.id, word_type)
+    await message.answer(get_template("commands:addword:success"))
 
 
 @dp.message_handler(commands=["delword"])
 async def cmd_delword(message: types.Message):
     args = message.text.split()
-    
-    word = args[1].lower()
-
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
     if not member.is_chat_admin():
@@ -74,18 +70,17 @@ async def cmd_delword(message: types.Message):
 
     if len(args) == 1:
         await message.answer(get_template("commands:delword:not_enough_arguments"))
+        return
     
-    else:
-        words_db.delete_local_word(message.chat.id, word)
-        await message.answer(get_template("commands:delword:success"))
+    word = args[1].lower()
+    
+    words_db.delete_local_word(message.chat.id, word)
+    await message.answer(get_template("commands:delword:success"))
 
 
 @dp.message_handler(commands=["addwhitelist"])
 async def cmd_addwhitelist(message: types.Message):
     args = message.text.split()
-    
-    word = args[1].lower()
-
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
     if not member.is_chat_admin():
@@ -94,18 +89,17 @@ async def cmd_addwhitelist(message: types.Message):
 
     if len(args) == 1:
         await message.answer(get_template("commands:addwhitelist:not_enough_arguments"))
+        return
     
-    else:
-        words_db.add_word_to_whitelist(message.chat.id, word, message.from_user.id)
-        await message.answer(get_template("commands:addwhitelist:success"))
+    word = args[1].lower()
+
+    words_db.add_word_to_whitelist(message.chat.id, word, message.from_user.id)
+    await message.answer(get_template("commands:addwhitelist:success"))
 
 
 @dp.message_handler(commands=["delwhitelist"])
 async def cmd_delwhitelist(message: types.Message):
     args = message.text.split()
-    
-    word = args[1].lower()
-
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
     
     if not member.is_chat_admin():
@@ -114,9 +108,10 @@ async def cmd_delwhitelist(message: types.Message):
 
     if len(args) == 1:
         await message.answer(get_template("commands:delwhitelist:not_enough_arguments"))
+        
+    word = args[1].lower()
     
-    else:
-        words_db.delete_word_from_whitelist(message.chat.id, word)
-        await message.answer(get_template("commands:delwhitelist:success"))
+    words_db.delete_word_from_whitelist(message.chat.id, word)
+    await message.answer(get_template("commands:delwhitelist:success"))
 
 
